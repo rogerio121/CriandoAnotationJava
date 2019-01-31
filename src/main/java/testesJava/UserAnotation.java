@@ -1,13 +1,7 @@
 package testesJava;
-import com.sun.javaws.Main;
-import jdk.nashorn.internal.objects.NativeArray;
-import org.reflections.Reflections;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.reflections.Reflections;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @CustomAnotation(nome = "nomePassado")
 public class UserAnotation {
@@ -24,12 +18,20 @@ public class UserAnotation {
         Reflections reflections = new Reflections("testesJava");
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(CustomAnotation.class);
 
+        System.out.println(getClasseByAnnotation("", classes));
+
+    }
+
+    public static String getClasseByAnnotation(String annotationName, Set<Class<?>> classes){
+        String retorno = "";
+
         for (Class<?> cl : classes) {
             CustomAnotation classeEncontrada = cl.getAnnotation(CustomAnotation.class);
-            System.out.println(classeEncontrada.toString());
+            if(classeEncontrada.nome().equalsIgnoreCase(annotationName)) {
+                retorno = cl.toString();
+            }
         }
-
-        System.out.printf(classes.toString());
-        //String key = challengeClass.getAnnotation(CustomAnotation.class).key();
+        return retorno;
     }
+
 }
