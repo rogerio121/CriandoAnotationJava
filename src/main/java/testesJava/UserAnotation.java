@@ -21,7 +21,6 @@ public class UserAnotation {
         Set<Class<?>> classes = reflections.getTypesAnnotatedWith(CustomAnotation.class);
 
         System.out.println(getClasseByAnnotation("nomePassado", classes));
-
     }
 
     public static String getClasseByAnnotation(String annotationName, Set<Class<?>> classes){
@@ -38,15 +37,6 @@ public class UserAnotation {
     		retorno = optional.get().getName();
     		System.out.println("Achou classe " + retorno);
     	}
-
-    	/*
-        for (Class<?> cl : classes) {
-            CustomAnotation classeEncontrada = cl.getAnnotation(CustomAnotation.class);
-            if(classeEncontrada.nome().equalsIgnoreCase(annotationName)) {
-                retorno = cl.toString();
-            }
-        }*/
-        
         return retorno;
     }
 
